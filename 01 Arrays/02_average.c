@@ -11,9 +11,7 @@ int main()
 		scanf("%d", &arr[i]);
 	}
 	for (i = 0; i < n; i++)
-	{
 		sum += arr[i];
-	}
 	float avg = sum / n;
 	printf("The Average is %.2f\n", avg);
 	return 0;

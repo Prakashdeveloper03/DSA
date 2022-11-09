@@ -12,7 +12,7 @@ int main()
         scanf("%d", &arr[i]);
     }
 
-    printf("\nThe Array before interchanging the largenst and smallest element :\n");
+    printf("\nThe Array before interchanging the largest and smallest element :\n");
     for (i = 0; i < n; i++)
         printf("%d ", arr[i]);
 

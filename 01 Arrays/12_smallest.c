@@ -14,6 +14,7 @@ int smallestElement(int arr[], int n)
     }
     return position;
 }
+
 int main()
 {
     int arr[100];
