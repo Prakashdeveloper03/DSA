@@ -9,12 +9,11 @@ int exp(int base, int pow)
 
 int main()
 {
-    int base, pow, result;
+    int base, pow;
     printf("Enter base number: ");
     scanf("%d", &base);
     printf("Enter power number(positive integer): ");
     scanf("%d", &pow);
-    result = exp(base, pow);
-    printf("%d ^ %d = %d\n", base, pow, result);
+    printf("%d ^ %d = %d\n", base, pow, exp(base, pow));
     return 0;
 }

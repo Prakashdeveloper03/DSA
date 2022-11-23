@@ -14,13 +14,9 @@ void push(int value)
     newNode = (struct Node *)malloc(sizeof(struct Node));
     newNode->data = value;
     if (top == NULL)
-    {
         newNode->next = NULL;
-    }
     else
-    {
         newNode->next = top;
-    }
     top = newNode;
     printf("Node is Inserted\n\n");
 }
@@ -28,9 +24,7 @@ void push(int value)
 int pop()
 {
     if (top == NULL)
-    {
         printf("\nStack Underflow\n");
-    }
     else
     {
         struct Node *temp = top;
@@ -44,9 +38,7 @@ int pop()
 void peek()
 {
     if (top == NULL)
-    {
         printf("\nStack Underflow\n");
-    }
     else
     {
         struct Node *temp = top;
@@ -57,9 +49,7 @@ void peek()
 void display()
 {
     if (top == NULL)
-    {
         printf("\nStack Underflow\n");
-    }
     else
     {
         printf("The stack is \n");

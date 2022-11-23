@@ -40,9 +40,7 @@ int checkBalanced(char expr[], int len)
   for (int i = 0; i < len; i++)
   {
     if (expr[i] == '(' || expr[i] == '[' || expr[i] == '{')
-    {
       push(expr[i]);
-    }
     else
     {
       if (s.top == -1)
@@ -66,6 +64,6 @@ int main()
   int i = 0;
   s.top = -1;
   int len = strlen(exp);
-  checkBalanced(exp, len) ? printf("Expression is Balanced\n\n") : printf("Expression is not Balanced\n\n");
+  checkBalanced(exp, len) ? printf("Expression is Balanced\n") : printf("Expression is not Balanced\n\n");
   return 0;
 }

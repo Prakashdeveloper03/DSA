@@ -20,7 +20,7 @@ int main()
 {
     int a, b, c, i;
     char prefix[50];
-    printf("\nEnter the prefix string in figures:");
+    printf("\nEnter the prefix string in figures : ");
     gets(prefix);
 
     for (i = strlen(prefix) - 1; i >= 0; i--)
@@ -54,7 +54,6 @@ int main()
         else
             push(prefix[i] - 48);
     }
-    printf("\nFinal ans = %d", pop());
-
+    printf("Final ans is %d\n", pop());
     return 0;
 }

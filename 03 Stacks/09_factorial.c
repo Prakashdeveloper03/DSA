@@ -10,10 +10,8 @@ long factorial(int n)
 int main()
 {
   int number;
-  long fact;
   printf("Enter a number: ");
   scanf("%d", &number);
-  fact = factorial(number);
-  printf("Factorial of %d is %ld\n\n", number, fact);
+  printf("Factorial of %d is %ld\n", number, factorial(number));
   return 0;
 }

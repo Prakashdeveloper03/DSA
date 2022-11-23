@@ -4,7 +4,7 @@ long f(int x, int y)
     if (x < y)
         return 0;
     else
-        return f(x - y, x) + 1;
+        return f(x - y, y) + 1;
 }
 
 int main()

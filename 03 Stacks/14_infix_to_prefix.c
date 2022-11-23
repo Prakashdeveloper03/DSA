@@ -12,7 +12,7 @@ int top = -1;
 
 int main()
 {
-    printf("\nEnter the Expression : ");
+    printf("\nEnter the expression : ");
     scanf("%s", infix);
     infix_to_prefix();
     return 0;
@@ -21,9 +21,7 @@ int main()
 void push(int pos)
 {
     if (top == MAX - 1)
-    {
-        printf("\nSTACK OVERFLOW\n");
-    }
+        printf("\nStack Overflow\n");
     else
     {
         top++;
@@ -66,7 +64,7 @@ void infix_to_prefix()
             push(i);
             i++;
         }
-        else if (infix[i] == '(' || infix[i] == '{' || infix[i] == '[')
+        else if (infix[i] == '(' || infix[i] == '{' || infix[i] == '[') /* when closing bracket is found */
         {
             if (infix[i] == '(')
             {
@@ -137,18 +135,14 @@ void infix_to_prefix()
     }
     strrev(prefix);
     prefix[j] = '\0';
-    printf("Equivalent Prefix Notation : %s ", prefix);
+    printf("Equivalent prefix notation : %s \n", prefix);
 }
 
 int precedence(char alpha)
 {
     if (alpha == '+' || alpha == '-')
-    {
-        return (1);
-    }
+        return 1;
     if (alpha == '*' || alpha == '/')
-    {
-        return (2);
-    }
+        return 2;
     return 0;
 }

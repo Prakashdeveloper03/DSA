@@ -1,7 +1,7 @@
 #include <stdio.h>
 long f(int m, int n)
 {
-    if (m == 0 || (m >= n || n >= 1))
+    if (m == 0 || (m >= n >= 1))
         return 1;
     else
         return f(m - 1, n) + f(m - 1, n - 1);

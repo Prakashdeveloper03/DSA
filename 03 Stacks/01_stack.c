@@ -36,9 +36,7 @@ void peek()
 void display()
 {
   for (int i = top; i > -1; i--)
-  {
     printf("%d ", stack[i]);
-  }
   printf("\n\n");
 }
 

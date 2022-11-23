@@ -11,15 +11,11 @@ struct Stack
 struct Stack *createStack(unsigned capacity)
 {
     struct Stack *stack = (struct Stack *)malloc(sizeof(struct Stack));
-
     if (!stack)
         return NULL;
-
     stack->top = -1;
     stack->capacity = capacity;
-
     stack->array = (int *)malloc(stack->capacity * sizeof(int));
-
     return stack;
 }
 
@@ -88,7 +84,7 @@ int infixToPostfix(char *exp)
             while (!isEmpty(stack) && peek(stack) != '(')
                 exp[++k] = pop(stack);
             if (!isEmpty(stack) && peek(stack) != '(')
-                return -1;
+                return -1; // invalid expression
             else
                 pop(stack);
         }
@@ -100,10 +96,8 @@ int infixToPostfix(char *exp)
             push(stack, exp[i]);
         }
     }
-
     while (!isEmpty(stack))
         exp[++k] = pop(stack);
-
     exp[++k] = '\0';
     printf("%s\n", exp);
 }
