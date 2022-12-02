@@ -61,8 +61,7 @@ int count(struct ListNode *head, int search_for)
 
 int main()
 {
-    struct ListNode *middle;
-    head = NULL;
+    initialize();
     int n, val, searchfor;
     printf("Enter the no of elements : ");
     scanf("%d", &n);

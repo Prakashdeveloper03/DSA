@@ -57,8 +57,7 @@ void multiplyLinkedList(struct ListNode *ListNodePtr)
 
 int main()
 {
-    struct ListNode *middle;
-    head = NULL;
+    initialize();
     int n, val;
     printf("Enter the no of elements : ");
     scanf("%d", &n);
