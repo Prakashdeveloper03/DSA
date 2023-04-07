@@ -21,40 +21,54 @@ void insert(Node **head, int data)
     if (*head == NULL)
     {
         *head = newNode;
+        newNode->next = *head;
     }
     else
     {
+        Node *temp = *head;
+        while (temp->next != *head)
+        {
+            temp = temp->next;
+        }
+        temp->next = newNode;
         newNode->next = *head;
-        *head = newNode;
     }
 }
 
 void printList(Node *head)
 {
     Node *temp = head;
-    while (temp != NULL)
+    do
     {
         printf("%d ", temp->data);
         temp = temp->next;
-    }
+    } while (temp != head);
     printf("\n");
 }
 
-Node *reverseList(Node *head)
+Node *copyList(Node *head)
 {
-    if (head == NULL || head->next == NULL)
+    if (head == NULL)
     {
-        return head;
+        return NULL;
     }
-    Node *rest = reverseList(head->next);
-    head->next->next = head;
-    head->next = NULL;
-    return rest;
+    Node *newHead = createNode(head->data);
+    Node *temp1 = head->next;
+    Node *temp2 = newHead;
+    while (temp1 != head)
+    {
+        Node *newNode = createNode(temp1->data);
+        temp2->next = newNode;
+        temp2 = temp2->next;
+        temp1 = temp1->next;
+    }
+    temp2->next = newHead;
+    return newHead;
 }
 
 int main()
 {
-    Node *list = NULL;
+    Node *head = NULL;
     int n, data;
     printf("Enter the number of nodes: ");
     scanf("%d", &n);
@@ -62,13 +76,12 @@ int main()
     {
         printf("Enter the data %d : ", i + 1);
         scanf("%d", &data);
-        insert(&list, data);
+        insert(&head, data);
     }
-    printf("The original list is: ");
-    list = reverseList(list);
-    printList(list);
-    list = reverseList(list);
-    printf("The reversed list is: ");
-    printList(list);
+    printf("Original list: ");
+    printList(head);
+    Node *copy = copyList(head);
+    printf("Copy of the list: ");
+    printList(copy);
     return 0;
 }

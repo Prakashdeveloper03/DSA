@@ -40,35 +40,21 @@ void printList(Node *head)
     printf("\n");
 }
 
-Node *reverseList(Node *head)
-{
-    if (head == NULL || head->next == NULL)
-    {
-        return head;
-    }
-    Node *rest = reverseList(head->next);
-    head->next->next = head;
-    head->next = NULL;
-    return rest;
-}
-
 int main()
 {
     Node *list = NULL;
-    int n, data;
-    printf("Enter the number of nodes: ");
-    scanf("%d", &n);
-    for (int i = 0; i < n; i++)
+    int n, num, digit;
+    printf("Enter an n-digit number: ");
+    scanf("%d", &num);
+    n = 0;
+    while (num > 0)
     {
-        printf("Enter the data %d : ", i + 1);
-        scanf("%d", &data);
-        insert(&list, data);
+        digit = num % 10;
+        insert(&list, digit);
+        num = num / 10;
+        n++;
     }
-    printf("The original list is: ");
-    list = reverseList(list);
-    printList(list);
-    list = reverseList(list);
-    printf("The reversed list is: ");
+    printf("The linked list is: ");
     printList(list);
     return 0;
 }

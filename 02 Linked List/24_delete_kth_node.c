@@ -24,8 +24,12 @@ void insert(Node **head, int data)
     }
     else
     {
-        newNode->next = *head;
-        *head = newNode;
+        Node *temp = *head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = newNode;
     }
 }
 
@@ -40,22 +44,39 @@ void printList(Node *head)
     printf("\n");
 }
 
-Node *reverseList(Node *head)
+void deleteNode(Node **head, int k)
 {
-    if (head == NULL || head->next == NULL)
+    if (*head == NULL)
     {
-        return head;
+        printf("List is empty!\n");
+        return;
     }
-    Node *rest = reverseList(head->next);
-    head->next->next = head;
-    head->next = NULL;
-    return rest;
+    if (k == 1)
+    {
+        Node *temp = *head;
+        *head = (*head)->next;
+        free(temp);
+        return;
+    }
+    Node *temp = *head;
+    for (int i = 1; i < k - 1; i++)
+    {
+        if (temp == NULL || temp->next == NULL)
+        {
+            printf("Invalid position!\n");
+            return;
+        }
+        temp = temp->next;
+    }
+    Node *nodeToDelete = temp->next;
+    temp->next = nodeToDelete->next;
+    free(nodeToDelete);
 }
 
 int main()
 {
     Node *list = NULL;
-    int n, data;
+    int n, data, k;
     printf("Enter the number of nodes: ");
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
@@ -65,10 +86,11 @@ int main()
         insert(&list, data);
     }
     printf("The original list is: ");
-    list = reverseList(list);
     printList(list);
-    list = reverseList(list);
-    printf("The reversed list is: ");
+    printf("Enter the position of the node to delete: ");
+    scanf("%d", &k);
+    deleteNode(&list, k);
+    printf("The updated list is: ");
     printList(list);
     return 0;
 }

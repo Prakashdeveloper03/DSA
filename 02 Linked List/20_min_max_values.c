@@ -1,3 +1,4 @@
+#include <limits.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -40,23 +41,30 @@ void printList(Node *head)
     printf("\n");
 }
 
-Node *reverseList(Node *head)
+void findMinMax(Node *head, int *min, int *max)
 {
-    if (head == NULL || head->next == NULL)
+    Node *temp = head;
+    *min = INT_MAX;
+    *max = INT_MIN;
+    while (temp != NULL)
     {
-        return head;
+        if (temp->data < *min)
+        {
+            *min = temp->data;
+        }
+        if (temp->data > *max)
+        {
+            *max = temp->data;
+        }
+        temp = temp->next;
     }
-    Node *rest = reverseList(head->next);
-    head->next->next = head;
-    head->next = NULL;
-    return rest;
 }
 
 int main()
 {
     Node *list = NULL;
     int n, data;
-    printf("Enter the number of nodes: ");
+    printf("Enter the number of elements: ");
     scanf("%d", &n);
     for (int i = 0; i < n; i++)
     {
@@ -64,11 +72,11 @@ int main()
         scanf("%d", &data);
         insert(&list, data);
     }
-    printf("The original list is: ");
-    list = reverseList(list);
+    printf("The linked list is: ");
     printList(list);
-    list = reverseList(list);
-    printf("The reversed list is: ");
-    printList(list);
+    int min, max;
+    findMinMax(list, &min, &max);
+    printf("The minimum value is: %d\n", min);
+    printf("The maximum value is: %d\n", max);
     return 0;
 }

@@ -24,8 +24,12 @@ void insert(Node **head, int data)
     }
     else
     {
-        newNode->next = *head;
-        *head = newNode;
+        Node *temp = *head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = newNode;
     }
 }
 
@@ -40,21 +44,34 @@ void printList(Node *head)
     printf("\n");
 }
 
-Node *reverseList(Node *head)
+Node *createAlternateList(Node *head)
 {
-    if (head == NULL || head->next == NULL)
+    Node *newHead = NULL, *temp = head, *prev = NULL;
+    int count = 0;
+    while (temp != NULL)
     {
-        return head;
+        if (count % 2 == 0)
+        {
+            Node *newNode = createNode(temp->data);
+            if (newHead == NULL)
+            {
+                newHead = newNode;
+            }
+            else
+            {
+                prev->next = newNode;
+            }
+            prev = newNode;
+        }
+        count++;
+        temp = temp->next;
     }
-    Node *rest = reverseList(head->next);
-    head->next->next = head;
-    head->next = NULL;
-    return rest;
+    return newHead;
 }
 
 int main()
 {
-    Node *list = NULL;
+    Node *list = NULL, *altList = NULL;
     int n, data;
     printf("Enter the number of nodes: ");
     scanf("%d", &n);
@@ -64,11 +81,10 @@ int main()
         scanf("%d", &data);
         insert(&list, data);
     }
-    printf("The original list is: ");
-    list = reverseList(list);
+    printf("Original list: ");
     printList(list);
-    list = reverseList(list);
-    printf("The reversed list is: ");
-    printList(list);
+    altList = createAlternateList(list);
+    printf("Alternate list: ");
+    printList(altList);
     return 0;
 }

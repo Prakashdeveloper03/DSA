@@ -4,6 +4,7 @@
 typedef struct node
 {
     int data;
+    struct node *prev;
     struct node *next;
 } Node;
 
@@ -11,6 +12,7 @@ Node *createNode(int data)
 {
     Node *newNode = malloc(sizeof(Node));
     newNode->data = data;
+    newNode->prev = NULL;
     newNode->next = NULL;
     return newNode;
 }
@@ -24,8 +26,12 @@ void insert(Node **head, int data)
     }
     else
     {
-        newNode->next = *head;
-        *head = newNode;
+        Node *temp = *head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = newNode;
     }
 }
 
@@ -40,16 +46,14 @@ void printList(Node *head)
     printf("\n");
 }
 
-Node *reverseList(Node *head)
+void addTen(Node *head)
 {
-    if (head == NULL || head->next == NULL)
+    Node *temp = head;
+    while (temp != NULL)
     {
-        return head;
+        temp->data += 10;
+        temp = temp->next;
     }
-    Node *rest = reverseList(head->next);
-    head->next->next = head;
-    head->next = NULL;
-    return rest;
 }
 
 int main()
@@ -65,10 +69,9 @@ int main()
         insert(&list, data);
     }
     printf("The original list is: ");
-    list = reverseList(list);
     printList(list);
-    list = reverseList(list);
-    printf("The reversed list is: ");
+    addTen(list);
+    printf("The updated list is: ");
     printList(list);
     return 0;
 }

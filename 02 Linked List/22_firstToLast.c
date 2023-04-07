@@ -24,8 +24,12 @@ void insert(Node **head, int data)
     }
     else
     {
-        newNode->next = *head;
-        *head = newNode;
+        Node *temp = *head;
+        while (temp->next != NULL)
+        {
+            temp = temp->next;
+        }
+        temp->next = newNode;
     }
 }
 
@@ -40,16 +44,20 @@ void printList(Node *head)
     printf("\n");
 }
 
-Node *reverseList(Node *head)
+void makeFirstLast(Node **head)
 {
-    if (head == NULL || head->next == NULL)
+    if (*head == NULL || (*head)->next == NULL)
     {
-        return head;
+        return;
     }
-    Node *rest = reverseList(head->next);
-    head->next->next = head;
-    head->next = NULL;
-    return rest;
+    Node *last = *head;
+    while (last->next != NULL)
+    {
+        last = last->next;
+    }
+    last->next = *head;
+    *head = (*head)->next;
+    last->next->next = NULL;
 }
 
 int main()
@@ -65,10 +73,9 @@ int main()
         insert(&list, data);
     }
     printf("The original list is: ");
-    list = reverseList(list);
     printList(list);
-    list = reverseList(list);
-    printf("The reversed list is: ");
+    makeFirstLast(&list);
+    printf("The list with first element as last element is: ");
     printList(list);
     return 0;
 }
