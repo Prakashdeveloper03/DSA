@@ -38,7 +38,7 @@ int main()
     int ch, value;
     printf("Queue using Array");
     printf("\n1.Insertion \n2.Deletion \n3.Display \n4.Exit");
-    while(1)
+    while (1)
     {
         printf("\nEnter the Choice:");
         scanf("%d", &ch);
